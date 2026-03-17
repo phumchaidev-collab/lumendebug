@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBuddy AI | Thai Context Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .drop-zone { border: 2px dashed #4B5563; transition: all 0.3s; }
+        .drop-zone.dragover { border-color: #10B981; background: #064E3B; }
+        .card { background: #1F2937; border: 1px solid #374151; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col items-center p-6">
+
+    <header class="mb-8 text-center">
+        <h1 class="text-3xl font-bold text-emerald-400">ChatBuddy AI</h1>
+        <p class="text-gray-400 text-sm">Analyze Thai chat screenshots & get instant replies.</p>
+    </header>
+
+    <main class="w-full max-w-2xl space-y-6">
+        <div class="card p-4 rounded-xl shadow-lg">
+            <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Pollinations API Key</label>
+            <input type="password" id="apiKey" placeholder="Enter sk_ or pk_ key..." 
+                   class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div id="dropZone" class="drop-zone rounded-2xl h-48 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-800">
+            <svg class="w-12 h-12 text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <p class="text-gray-400 font-medium">Click to upload or <span class="text-emerald-400 font-bold">Paste (Ctrl+V)</span></p>
+            <input type="file" id="fileInput" class="hidden" accept="image/*">
+        </div>
+
+        <div id="status" class="text-center text-sm font-medium text-emerald-500 hidden italic">Reading the vibe...</div>
+        <img id="preview" class="hidden max-h-48 mx-auto rounded-lg shadow-md border border-gray-700">
+
+        <div id="results" class="grid grid-cols-1 gap-4 hidden">
+            <div class="card p-4 rounded-xl">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-blue-400 uppercase">Empathetic</span>
+                    <button onclick="copyToClipboard('text1')" class="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded">Copy</button>
+                </div>
+                <p id="text1" class="text-sm leading-relaxed text-gray-200">Waiting for analysis...</p>
+            </div>
+            <div class="card p-4 rounded-xl">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-yellow-400 uppercase">Casual</span>
+                    <button onclick="copyToClipboard('text2')" class="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded">Copy</button>
+                </div>
+                <p id="text2" class="text-sm leading-relaxed text-gray-200">Waiting for analysis...</p>
+            </div>
+            <div class="card p-4 rounded-xl">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-emerald-400 uppercase">Action-Oriented</span>
+                    <button onclick="copyToClipboard('text3')" class="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded">Copy</button>
+                </div>
+                <p id="text3" class="text-sm leading-relaxed text-gray-200">Waiting for analysis...</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
